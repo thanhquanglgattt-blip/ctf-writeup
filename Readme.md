@@ -16,8 +16,12 @@
 ## 2. Analysis (Phân tích)
 * Tại màn hình chính của trò chơi, tôi đã bấm vào chức năng bắt đầu chơi.
 * Khi vào màn hình trò chơi, tôi đã sử dụng tính năng xem mã nguồn (view-source) của trình duyệt để kiểm tra cấu trúc trang web tại đường dẫn `/game`.
+  <img width="1917" height="1190" alt="image" src="https://github.com/user-attachments/assets/36697f9f-55c6-49dc-9350-c0ecdb792c69" />
+
 * Trong mã nguồn HTML, tôi phát hiện một tệp JavaScript được gọi vào trang thông qua đường dẫn `/static/game.js?v=2.2`.
 * Mở trực tiếp tệp JavaScript này và lướt xuống dưới, tôi phát hiện một đoạn mã kiểm tra điều kiện chiến thắng bên trong hàm `checkFlag()`.
+  <img width="637" height="255" alt="image" src="https://github.com/user-attachments/assets/4c567a22-356b-40d7-8436-fea0f37b3fc4" />
+
 * Hàm này giải mã một biến `hidden` từ chuỗi Base64 bằng lệnh `atob("YW50aWNoZWF0Q2hlY2s=")`[cite: 5].
 * Để hàm gọi tiếp đến chức năng hiển thị cờ `secureFlagDisplay()`, điểm số phải thỏa mãn điều kiện `score > 999999` và `score == (previousScore + 10)`.
 * Tôi nhận thấy lập trình viên đã gán một object `__ctf` vào đối tượng toàn cục `window` thông qua câu lệnh `window.__ctf`.
