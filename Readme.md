@@ -35,6 +35,8 @@
 window.__ctf.setScore(1000000, 999990);
 ![alt text]
 ```
+<img width="1447" height="240" alt="image" src="https://github.com/user-attachments/assets/31167bdc-1f82-40be-8898-b4f1161ab22b" />
+
 **Bước 3:** Kích hoạt quá trình kiểm tra cờ bằng cách gọi hàm `triggerCheck()`. Trong tab Console, tôi nhập tiếp dòng lệnh sau và nhấn Enter:
 ```javascript
 window.__ctf.triggerCheck();
