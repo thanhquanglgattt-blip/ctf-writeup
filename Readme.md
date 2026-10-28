@@ -33,5 +33,13 @@
 **Bước 2:** Gọi hàm `setScore` đã bị lộ để thiết lập mức điểm số giả mạo. Để vượt qua điều kiện `score > 999999` và khoảng cách điểm là 10, tôi nhập lệnh:
 ```javascript
 window.__ctf.setScore(1000000, 999990);
-![alt text](image.png)
+![alt text]
+```
+**Bước 3:** Kích hoạt quá trình kiểm tra cờ bằng cách gọi hàm `triggerCheck()`. Trong tab Console, tôi nhập tiếp dòng lệnh sau và nhấn Enter:
+```javascript
+window.__ctf.triggerCheck();
+```
+![alt text](image-1.png)
+
+Flag lấy được:  PTITHCM{h4ck_7h3_pl4n37_$4v3_7h3__0x386c8c}
 
