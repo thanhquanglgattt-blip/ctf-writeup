@@ -8,21 +8,21 @@
 ---
 
 ## 1. Overview (Tổng quan)
-* **Tên thử thách:** Ứng dụng web mang tên "Galactic Invaders v2.1"[cite: 2, 4].
-* **URL:** Trò chơi được lưu trữ tại tên miền `galactic-invaders.infosec.online`[cite: 2, 5].
-* **Mô tả:** Giao diện là một trò chơi bắn tàu vũ trụ, trong đó người chơi cần bảo vệ Trạm Alpha (Station Alpha)[cite: 3, 4].
+* **Tên thử thách:** Ứng dụng web mang tên "Galactic Invaders v2.1"].
+* **URL:** Trò chơi được lưu trữ tại tên miền `galactic-invaders.infosec.online`.
+* **Mô tả:** Giao diện là một trò chơi bắn tàu vũ trụ, trong đó người chơi cần bảo vệ Trạm Alpha (Station Alpha).
 * **Mục tiêu:** Giao diện trò chơi yêu cầu người chơi phải đạt được mục tiêu điểm số là 1.000.000 (1,000,000 PTS)[cite: 3, 4].
 
 ## 2. Analysis (Phân tích)
-* Tại màn hình chính của trò chơi, tôi đã bấm vào chức năng bắt đầu chơi[cite: 2].
-* Khi vào màn hình trò chơi, tôi đã sử dụng tính năng xem mã nguồn (view-source) của trình duyệt để kiểm tra cấu trúc trang web tại đường dẫn `/game`[cite: 4].
-* Trong mã nguồn HTML, tôi phát hiện một tệp JavaScript được gọi vào trang thông qua đường dẫn `/static/game.js?v=2.2`[cite: 4].
-* Mở trực tiếp tệp JavaScript này và lướt xuống dưới, tôi phát hiện một đoạn mã kiểm tra điều kiện chiến thắng bên trong hàm `checkFlag()`[cite: 5].
+* Tại màn hình chính của trò chơi, tôi đã bấm vào chức năng bắt đầu chơi.
+* Khi vào màn hình trò chơi, tôi đã sử dụng tính năng xem mã nguồn (view-source) của trình duyệt để kiểm tra cấu trúc trang web tại đường dẫn `/game`.
+* Trong mã nguồn HTML, tôi phát hiện một tệp JavaScript được gọi vào trang thông qua đường dẫn `/static/game.js?v=2.2`.
+* Mở trực tiếp tệp JavaScript này và lướt xuống dưới, tôi phát hiện một đoạn mã kiểm tra điều kiện chiến thắng bên trong hàm `checkFlag()`.
 * Hàm này giải mã một biến `hidden` từ chuỗi Base64 bằng lệnh `atob("YW50aWNoZWF0Q2hlY2s=")`[cite: 5].
-* Để hàm gọi tiếp đến chức năng hiển thị cờ `secureFlagDisplay()`, điểm số phải thỏa mãn điều kiện `score > 999999` và `score == (previousScore + 10)`[cite: 5].
-* Tôi nhận thấy lập trình viên đã gán một object `__ctf` vào đối tượng toàn cục `window` thông qua câu lệnh `window.__ctf`[cite: 5].
-* Object này cung cấp sẵn hàm `setScore(s, p)` để thay đổi biến `score` và `previousScore`[cite: 5].
-* Object cũng cung cấp hàm `triggerCheck()` để gọi trực tiếp lệnh kiểm tra cờ[cite: 5].
+* Để hàm gọi tiếp đến chức năng hiển thị cờ `secureFlagDisplay()`, điểm số phải thỏa mãn điều kiện `score > 999999` và `score == (previousScore + 10)`.
+* Tôi nhận thấy lập trình viên đã gán một object `__ctf` vào đối tượng toàn cục `window` thông qua câu lệnh `window.__ctf`.
+* Object này cung cấp sẵn hàm `setScore(s, p)` để thay đổi biến `score` và `previousScore`.
+* Object cũng cung cấp hàm `triggerCheck()` để gọi trực tiếp lệnh kiểm tra cờ.
 
 ## 3. Vulnerability (Lỗ hổng)
 * **Loại lỗ hổng:** Insecure Client-Side Trust (Tin tưởng dữ liệu máy khách không an toàn) & Global Scope Exposure (Phơi bày biến toàn cục).
